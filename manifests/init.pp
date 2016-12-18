@@ -32,5 +32,7 @@ class cygwin (
 
   include cygwin::install
 
-  create_resources('cygwin::package', $packages)
+  if !empty($packages) {
+    create_resources('cygwin::package', $packages)
+  }
 }
