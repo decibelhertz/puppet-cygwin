@@ -177,8 +177,10 @@ Puppet::Type.type(:package).provide(:cygwin, :parent => Puppet::Provider::Packag
       flags << @resource[:install_options]
     end
 
-    unless source = @resource[:source]
-      flags = flags.concat ['-s', source]
+    unless source = @resource[:source] then
+      unless source.nil? then
+        flags = flags.concat ['-s', source]
+      end
     end
 
     self.class.cygwin(flags)
